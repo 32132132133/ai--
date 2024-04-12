@@ -7,5 +7,5 @@ def factorial(n):
       result *= i
     return result
 
-n = int(input("n °ªÀ» ÀÔ·ÂÇÏ¼¼¿ä: "))
-print(f"{n}!Àº {factorial(n)}ÀÔ´Ï´Ù.")
+n = int(input("n ê°’ì„ ì…ë ¥í•˜ì„¸ìš”: "))
+print(f"{n}!ì€ {factorial(n)}ì…ë‹ˆë‹¤.")
