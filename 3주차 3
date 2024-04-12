@@ -9,3 +9,17 @@ def factorial(n):
 
 n = int(input("n 값을 입력하세요: "))
 print(f"{n}!은 {factorial(n)}입니다.")
+
+def grade(score):
+    if score >= 90:
+        return "A"
+    elif score >= 80:
+        return "B"
+    elif score >= 70:
+        return "C"
+    elif score >= 60:
+        return "D"
+    else:
+        return "F"
+
+print(grade(95))
