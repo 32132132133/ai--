@@ -1,0 +1,62 @@
+import pandas as pd
+
+# 주어진 데이터로 데이터프레임 생성
+data = {
+    "학생": ["John", "Alice", "Bob", "Emily"],
+    "수학": [90, 87, 78, 92],
+    "영어": [85, 91, 80, 88],
+    "과학": [88, 89, 85, 82]
+}
+df = pd.DataFrame(data)
+
+# 데이터프레임의 요약 통계 정보 출력
+summary_stats = df.describe()
+print("Summary Statistics:")
+print(summary_stats)
+
+# 수학 점수가 가장 높은 학생의 정보 출력
+top_math_student = df[df['수학'] == df['수학'].max()]
+print("\nStudent with the Highest Math Score:")
+print(top_math_student)
+
+# 수학 점수가 90점 이상인 학생의 정보 출력
+high_math_students = df[df['수학'] >= 90]
+print("\nStudents with Math Scores Greater Than or Equal to 90:")
+print(high_math_students)
+
+
+
+import pandas as pd
+
+# 예시 데이터
+data = {
+    "매출액": [135758208810, 139655543516, 110945002730],
+    "관객수": [17615844, 16266338, 14264059],
+    "스크린수": [1587, 2003, 1044],
+    "상영횟수": [188724, 292816, 212698],
+    "대표국적": ["한국", "한국", "미국"],
+    "국적": ["한국", "한국", "미국"],
+    "배급사": ["CJ ENM", "CJ ENM", "롯데엔터테인먼트"]
+}
+
+# 데이터프레임 생성
+df = pd.DataFrame(data)
+
+# 1. 데이터프레임 정보 출력
+print("DataFrame 정보:")
+print(df.info())
+
+# 2. '대표국적' 별 영화 편수 집계
+movie_counts = df['대표국적'].value_counts()
+print("\n대표국적별 영화 편수:")
+print(movie_counts)
+
+# 3. '대표국적'이 '영국'인 영화 필터링 및 출력
+uk_movies = df[df['대표국적'] == '영국']
+print("\n대표국적이 '영국'인 영화:")
+print(uk_movies)
+
+# 4. 각 '대표국적'별 최상위 순위 영화 출력
+top_movies_by_nationality = df.sort_values(by='관객수', ascending=False).drop_duplicates('대표국적')
+print("\n대표국적별 최상위 순위 영화:")
+print(top_movies_by_nationality)
