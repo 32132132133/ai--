@@ -1,0 +1,133 @@
+# 필수 라이브러리 임포트
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+import seaborn as sns
+
+# 예제 데이터 생성 및 시각화 예제
+
+# 1. Matplotlib을 이용한 선 그래프 그리기
+x = [1, 2, 3, 4]
+y = [1, 4, 9, 16]
+plt.plot(x, y)
+plt.xlabel('X축')
+plt.ylabel('Y축')
+plt.title('간단한 선 그래프')
+plt.show()
+
+# 2. 엑셀 파일을 데이터프레임으로 가져와서 그래프 출력하기
+df = pd.read_excel('data1.xlsx')
+plt.plot(df['kor'])
+plt.xlabel('학생')
+plt.ylabel('국어 점수')
+plt.title('국어 점수 그래프')
+plt.show()
+
+# 3. 두 개의 그래프를 동시에 표현하기
+plt.plot(df['kor'], '--', marker='o', label='korean')
+plt.plot(df['math'], marker='^', label='math')
+plt.xlabel('학생')
+plt.ylabel('점수')
+plt.title('국어와 수학 점수 그래프')
+plt.legend()
+plt.show()
+
+# 실습 문제 1: 데이터프레임 생성
+data = {
+    '요일': ['월', '화', '수', '목', '금', '토', '일'],
+    '공부시간': [2, 3, 1, 5, 4, 2, 1],
+    '성적': [70, 75, 65, 85, 80, 70, 60]
+}
+df = pd.DataFrame(data)
+
+# 실습 문제 2: 요일별 공부시간 선 그래프
+x = df['요일']
+y = df['공부시간']
+plt.plot(x, y)
+plt.xlabel('요일')
+plt.ylabel('공부시간')
+plt.title('요일별 공부시간')
+plt.show()
+
+# 실습 문제 3: 요일별 성적 선 그래프
+a = df['요일']
+b = df['성적']
+plt.plot(a, b)
+plt.xlabel('요일')
+plt.ylabel('성적')
+plt.title('요일별 성적')
+plt.show()
+
+# 산점도 그래프
+x = df['공부시간']
+y = df['성적']
+plt.scatter(x, y)
+plt.xlabel('공부시간')
+plt.ylabel('성적')
+plt.title('공부 시간과 성적의 관계')
+plt.show()
+
+# Numpy를 이용한 산점도
+x = np.arange(1, 11)
+y = np.random.randint(1, 30, 10)
+plt.scatter(x, y)
+plt.xlabel('X 값')
+plt.ylabel('Y 값')
+plt.title('Numpy를 이용한 산점도')
+plt.show()
+
+# 막대그래프
+cities = ['서울', '부산', '인천', '대구']
+population = [9904312, 3448737, 2890451, 2466052]
+plt.bar(cities, population)
+plt.title('도시별 인구 수')
+plt.xlabel('도시')
+plt.ylabel('인구 수')
+plt.show()
+
+# Seaborn을 이용한 데이터 시각화
+data = pd.DataFrame({
+    'x': [1, 2, 3, 4, 5],
+    'y': [10, 20, 15, 25, 30],
+    'category': ['A', 'B', 'A', 'B', 'A']
+})
+sns.scatterplot(x='x', y='y', hue='category', data=data)
+plt.title('산점도 그래프')
+plt.show()
+
+# Countplot
+data = pd.DataFrame({
+    'category': ['A', 'B', 'A', 'C', 'B', 'A', 'A', 'C', 'B', 'B'],
+    'value': [10, 20, 15, 25, 30, 12, 18, 22, 28, 35]
+})
+sns.countplot(x='category', data=data)
+plt.title('Countplot')
+plt.show()
+
+# 종별 항목값 평균을 표시하는 막대그래프
+iris_data = pd.read_csv('iris.csv')
+sns.barplot(x='species', y='petal_length', data=iris_data, hue='species')
+plt.title('종별 꽃잎 길이 평균')
+plt.show()
+
+# 펭귄 데이터 분석
+penguins = sns.load_dataset('penguins')
+sns.barplot(x='species', y='body_mass_g', data=penguins, hue='sex')
+plt.title('펭귄 품종별 몸무게 평균')
+plt.show()
+
+# 숫자값을 갖는 항목들끼리의 상관관계 그래프
+sns.pairplot(penguins, hue='species')
+plt.title('숫자값을 갖는 항목들끼리의 상관관계')
+plt.show()
+
+# 산점도와 추세선
+sns.regplot(x='flipper_length_mm', y='body_mass_g', data=penguins)
+plt.title('펭귄 지느러미 길이와 몸무게의 관계')
+plt.show()
+
+# 히트맵
+corr_matrix = iris_data.corr()
+sns.heatmap(corr_matrix, annot=True, fmt='.2f', cbar=False)
+plt.title('상관관계 히트맵')
+plt.show()
